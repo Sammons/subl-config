@@ -1,4 +1,7 @@
 [
+	{ "keys": ["ctrl+u"], "command": "new_pane" },
+	{ "keys": ["ctrl+u","ctrl+k"], "command": "close_pane" },
+	{ "keys": ["ctrl+u","ctrl+c"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
 	{ "keys": ["ctrl+g"], "command": "copy" },
 	{ "keys": ["ctrl+r"], "command": "paste" },
 	{ "keys": ["ctrl+d"], "command": "save" },
