@@ -1,20 +1,20 @@
 import sublime, sublime_plugin, logging, os
 
 def ensureModed(settings):
-	if (not settings.has('mode-ify')):
-		settings.set('mode-ify',0)
+	if (not settings.has('keys')):
+		settings.set('keys',0)
 
 def toggleMode(settings,mode):
-	if settings.get('mode-ify')==mode:
-		settings.set('mode-ify',0)
+	if settings.get('keys')==mode:
+		settings.set('keys',0)
 	else: 
-		settings.set('mode-ify',mode)
+		settings.set('keys',mode)
 
 class SetModeCommand(sublime_plugin.TextCommand):
 	def run(self, edit, mode):
 		settings = self.view.settings()
 		toggleMode(settings,mode)
-		print(settings.get('mode-ify'))
+		print(settings.get('keys'))
 
 
 class BindCommandsCommand(sublime_plugin.TextCommand):
@@ -22,13 +22,13 @@ class BindCommandsCommand(sublime_plugin.TextCommand):
 		settings = self.view.settings()
 		ensureModed(settings)
 		for command in commands:
-			if (settings.get('mode-ify')==command['mode']):
+			if (settings.get('keys')==command['mode']):
 				if 'args' in command:
 					self.view.run_command(command['command'],command['args'])
 				else:
 					self.view.run_command(command['command'])
 				if 'subsequently' in command:
-					settings.set('mode-ify',command['subsequently'])
+					settings.set('keys',command['subsequently'])
 
 #terminal in current directory
 class terminalCommand(sublime_plugin.TextCommand):
